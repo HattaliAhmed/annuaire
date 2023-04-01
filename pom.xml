@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>jeeWebApp</groupId>
-	<artifactId>jeeWebApp</artifactId>
+	<groupId>annuaire</groupId>
+	<artifactId>annuaire</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jeeWebApp</name>
-	<description>Demo project for Spring Boot Web Application</description>
+	<name>annuaire</name>
+	<description>L'objectif du mini projet est simple : gérer à l'aide de la technologie JEE un annuaire de personnes.</description>
 	<packaging>war</packaging>
 
 	<properties>
