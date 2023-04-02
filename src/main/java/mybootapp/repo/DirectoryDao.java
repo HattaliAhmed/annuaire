@@ -8,72 +8,67 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import mybootapp.model.Group;
+import mybootapp.model.Groupe;
 import mybootapp.model.Person;
 
 @Repository
 @Transactional
-
 public class DirectoryDao implements IDirectoryDao {
+	
+		@PersistenceContext
+		private EntityManager entityManager;
 
-	    @PersistenceContext
-	    private EntityManager entityManager;
 
-	    @Override
-	    public Collection<Group> findAllGroups() {
-	        TypedQuery<Group> query = entityManager.createQuery("SELECT g FROM Group g", Group.class);
+	    public Collection<Groupe> findAllGroups() {
+	        TypedQuery<Groupe> query = entityManager.createQuery("SELECT g FROM Groupe g", Groupe.class);
 	        return query.getResultList();
 	    }
 
-	    @Override
 	    public Collection<Person> findAllPersons() {
 	        TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p", Person.class);
 	        return query.getResultList();
 	    }
 	    
-	    @Override
-	    public Collection<Person> findPersonsByGroup(Group group) {
-	        TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p JOIN p.groups g WHERE g = :group", Person.class);
-	        query.setParameter("group", group);
+	    public Collection<Person> findPersonsByGroup(Groupe groupe) {
+	        TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p JOIN p.groups g WHERE g = :groupe", Person.class);
+	        query.setParameter("groupe", groupe);
 	        return query.getResultList();
 	    }
 
-
-	    @Override
 	    public Person findPersonById(long id) {
 	        return entityManager.find(Person.class, id);
 	    }
 
-	    @Override
-	    public Group findGroupById(long id) {
-	        return entityManager.find(Group.class, id);
+	    public Groupe findGroupById(long id) {
+	        return entityManager.find(Groupe.class, id);
 	    }
 
-	    @Override
-	    public Group findGroupByName(String name) {
-	        TypedQuery<Group> query = entityManager.createQuery("SELECT g FROM Group g WHERE g.name = :name", Group.class);
+
+	    public Groupe findGroupByName(String name) {
+	        TypedQuery<Groupe> query = entityManager.createQuery("SELECT g FROM Groupe g WHERE g.name = :name", Groupe.class);
 	        query.setParameter("name", name);
 	        return query.getSingleResult();
 	    }
 
-	    @Override
+
 	    public void savePerson(Person p) {
 	        entityManager.persist(p);
 	    }
 
-	    @Override
-	    public void saveGroup(Group g) {
+
+	    public void saveGroup(Groupe g) {
 	        entityManager.persist(g);
 	    }
 
-	    @Override
+
 	    public void deletePerson(Person p) {
 	        entityManager.remove(entityManager.contains(p) ? p : entityManager.merge(p));
 	    }
 
-	    @Override
-	    public void deleteGroup(Group g) {
+
+	    public void deleteGroup(Groupe g) {
 	        entityManager.remove(entityManager.contains(g) ? g : entityManager.merge(g));
 	    }
 
@@ -82,7 +77,7 @@ public class DirectoryDao implements IDirectoryDao {
 	        entityManager.merge(p);
 	    }
 
-	    public void updateGroup(Group g) {
+	    public void updateGroup(Groupe g) {
 	        entityManager.merge(g);
 	    }
 

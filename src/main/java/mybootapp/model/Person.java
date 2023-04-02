@@ -39,5 +39,5 @@ public class Person {
     private String password;
 
     @ManyToOne
-    private Group group;
+    private Groupe groupe;
 }
