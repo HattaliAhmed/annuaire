@@ -3,6 +3,7 @@ package jee.annuaire;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +27,6 @@ public class Groupe {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "groupe")
+    @OneToMany(mappedBy = "groupe", fetch = FetchType.EAGER)
     private List<Person> members;
 }
