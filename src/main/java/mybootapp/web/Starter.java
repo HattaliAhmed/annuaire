@@ -13,11 +13,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import mybootapp.model.Course;
-import mybootapp.repo.CourseRepository;
+import mybootapp.repo.DirectoryDao;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = CourseRepository.class)
-@EntityScan(basePackageClasses = Course.class)
+@EnableJpaRepositories(basePackageClasses = DirectoryDao.class)
 public class Starter extends SpringBootServletInitializer implements WebMvcConfigurer {
 
 	@Override

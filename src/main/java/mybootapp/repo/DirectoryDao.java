@@ -2,13 +2,16 @@ package mybootapp.repo;
 
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import mybootapp.model.Groupe;
 import mybootapp.model.Person;
@@ -19,6 +22,20 @@ public class DirectoryDao implements IDirectoryDao {
 	
 		@PersistenceContext
 		private EntityManager entityManager;
+		
+	    private EntityManagerFactory factory = null;
+
+	    @PostConstruct
+	    public void init() {
+	        factory = Persistence.createEntityManagerFactory("myBase");
+	    }
+
+	    @PreDestroy
+	    public void close() {
+	        if (factory != null) {
+	            factory.close();
+	        }
+	    }
 
 
 	    public Collection<Groupe> findAllGroups() {
