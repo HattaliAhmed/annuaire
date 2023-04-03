@@ -1,5 +1,6 @@
 package jee.annuaire;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,7 +29,6 @@ class AnnuaireApplicationTests {
 		for (int i = 0; i < PERSON_COUNT; i++) {
 			Person person = new Person();
 			person.setFirstName("person" + i);
-			person.setId((long)i);
 			person.setGroupe(directoryDao.findGroupById((i % GROUP_COUNT)));
 			directoryDao.savePerson(person);
 		}
@@ -45,7 +45,6 @@ class AnnuaireApplicationTests {
 
 	@Test
 	public void findPersonByIdCheck() {
-		// TODO
 	}
 
 }
