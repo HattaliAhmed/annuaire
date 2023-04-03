@@ -1,7 +1,6 @@
-package mybootapp.repo;
+package jee.annuaire;
 
 import java.util.Collection;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;
@@ -10,11 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Repository;
-
-import mybootapp.model.Groupe;
-import mybootapp.model.Person;
 
 @Repository
 @Transactional
@@ -22,22 +17,6 @@ public class DirectoryDao implements IDirectoryDao {
 	
 		@PersistenceContext
 		private EntityManager entityManager;
-		
-	    private EntityManagerFactory factory = null;
-
-	    @PostConstruct
-	    public void init() {
-	        factory = Persistence.createEntityManagerFactory("myBase");
-	    }
-
-	    @PreDestroy
-	    public void close() {
-	        if (factory != null) {
-	            factory.close();
-	        }
-	    }
-
-
 	    public Collection<Groupe> findAllGroups() {
 	        TypedQuery<Groupe> query = entityManager.createQuery("SELECT g FROM Groupe g", Groupe.class);
 	        return query.getResultList();
@@ -49,7 +28,7 @@ public class DirectoryDao implements IDirectoryDao {
 	    }
 	    
 	    public Collection<Person> findPersonsByGroup(Groupe groupe) {
-	        TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p JOIN p.groups g WHERE g = :groupe", Person.class);
+	        TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p JOIN p.groupe g WHERE g = :groupe", Person.class);
 	        query.setParameter("groupe", groupe);
 	        return query.getResultList();
 	    }

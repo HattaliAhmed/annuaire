@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>annuaire</groupId>
+
+	<groupId>jee</groupId>
 	<artifactId>annuaire</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>annuaire</name>
-	<description>L'objectif du mini projet est simple : gérer à l'aide de la technologie JEE un annuaire de personnes.</description>
 	<packaging>war</packaging>
-
+	<name>annuaire</name>
+	<description>L&apos;objectif du mini projet est de gérer à l&apos;aide de la technologie JEE un annuaire de personnes.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -103,4 +104,5 @@
 			<version>0.30</version>
 		</dependency>
 	</dependencies>
+
 </project>

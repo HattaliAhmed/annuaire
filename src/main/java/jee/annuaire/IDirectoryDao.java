@@ -1,11 +1,7 @@
-package mybootapp.repo;
+package jee.annuaire;
 
 import java.util.Collection;
-
 import org.springframework.stereotype.Service;
-
-import mybootapp.model.Groupe;
-import mybootapp.model.Person;
 
 @Service
 public interface IDirectoryDao {
