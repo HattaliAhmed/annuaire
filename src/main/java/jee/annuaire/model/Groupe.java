@@ -1,5 +1,6 @@
-package jee.annuaire;
+package jee.annuaire.model;
 
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,6 @@ public class Groupe {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "groupe", fetch = FetchType.EAGER)
-    private List<Person> members;
+    @OneToMany(mappedBy = "groupe", fetch = FetchType.LAZY)
+    private Collection<Person> members;
 }

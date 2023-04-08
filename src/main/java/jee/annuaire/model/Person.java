@@ -1,4 +1,4 @@
-package jee.annuaire;
+package jee.annuaire.model;
 
 import java.time.LocalDate;
 import javax.persistence.Column;
