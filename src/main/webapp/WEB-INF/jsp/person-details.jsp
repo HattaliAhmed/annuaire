@@ -15,8 +15,6 @@
                 <c:otherwise>
                     <p><strong>First Name:</strong> ${person.firstName}</p>
                     <p><strong>Last Name:</strong> ${person.lastName}</p>
-                    <p><strong>Birth Date:</strong> ${person.birthDate}</p>
-                    <p><strong>Email:</strong> ${person.email}</p>
                     <p><strong>Website:</strong> <a href="${person.website}">${person.website}</a></p>
                     <p><strong>Group:</strong> ${person.groupe.name}</p>
                 </c:otherwise>
