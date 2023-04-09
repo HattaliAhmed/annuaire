@@ -1,23 +1,28 @@
 package jee.annuaire.model;
 
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Person {
 
     @Id
@@ -28,7 +33,6 @@ public class Person {
 
     private String lastName;
 
-    @Column(unique = true)
     private String email;
 
     private String website;
@@ -37,6 +41,7 @@ public class Person {
 
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(optional = true)
+    @ToString.Exclude // afin d'éviter les boucles
     private Groupe groupe;
 }

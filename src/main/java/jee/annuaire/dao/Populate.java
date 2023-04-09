@@ -41,13 +41,13 @@ public class Populate {
       groupe.setName("Groupe " + (i + 1));
 
       List<Person> personnes = new ArrayList<>();
+      groupe.setMembers(personnes);
+
       for (int j = 0; j < NB_PERSONNES_GROUPE; j++) {
         Person personne = generateRandomPerson();
         personne.setGroupe(groupe);
-        personnes.add(personne);
+        groupe.addMember(personne);
       }
-
-      groupe.setMembers(personnes);
       directoryDao.saveGroup(groupe);
     }
   }
@@ -58,7 +58,7 @@ public class Populate {
     String prenom = noms.get((int) (Math.random() * noms.size()));
 
     LocalDate birthDate = LocalDate.ofEpochDay((long) (Math.random() * 365 * 100));
-    String email = prenom.toLowerCase() + "." + nom.toLowerCase() + "@example.com";
+    String email = prenom.toLowerCase() + "-" + nom.toLowerCase() + "@example.com";
     String website = "http://" + prenom.toLowerCase() + nom.toLowerCase() + ".com";
     String password = "password";
 
@@ -69,9 +69,6 @@ public class Populate {
     personne.setEmail(email);
     personne.setWebsite(website);
     personne.setPassword(password);
-
-    directoryDao.savePerson(personne);
-
     return personne;
   }
 

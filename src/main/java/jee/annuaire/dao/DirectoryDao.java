@@ -34,6 +34,8 @@ public class DirectoryDao implements IDirectoryDao {
 
 		@Override
 		public void saveGroup(Groupe groupe) {
+			System.out.println("saveGroup: " + groupe.getName());
+			groupe.getMembers().size();
 			entityManager.merge(groupe);
 		}
 
@@ -57,6 +59,7 @@ public class DirectoryDao implements IDirectoryDao {
 
 		@Override
 		public void savePerson(Person person) {
+			System.out.println("savePerson: " + person.getLastName());
 			entityManager.merge(person);
 		}
 
