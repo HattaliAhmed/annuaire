@@ -23,7 +23,7 @@ class DaoTest {
 
 	@Autowired
 	DirectoryDao directoryDao;
-	
+
 	@Test
 	@Transactional
 	void testPopulate() {
@@ -97,6 +97,12 @@ class DaoTest {
 		g.setName("Groupe Test");
 		directoryDao.saveGroup(g);
 		assertEquals(true, directoryDao.findGroupByName("Groupe Test").size() > 0);
+
+		// Update the group
+		Groupe g2 = directoryDao.findGroupByName("Groupe Test").get(0);
+		g2.setName("Friends");
+		directoryDao.saveGroup(g2);
+		assertEquals(true, directoryDao.findGroupByName("Friends").size() > 0);
 	}
 
 	@Test
