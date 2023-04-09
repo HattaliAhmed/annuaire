@@ -9,7 +9,6 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -20,8 +19,6 @@
                 <td>${group.name}</td>
                 <td>
                     <a href="/groups/${group.id}" class="btn btn-primary">View</a>
-                </td>
-                <td>
                     <a href="/groups/${group.id}/edit" class="btn btn-secondary">Edit</a>
                 </td>
             </tr>
