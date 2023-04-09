@@ -1,31 +1,30 @@
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Members of ${group.name}</title>
-</head>
-<body>
-<h1>Members of ${group.name}</h1>
-<table>
-    <thead>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Profile</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="member" items="${group.members}">
+<div class="container">
+    <h1 class="mt-3">Members of ${group.name}</h1>
+    <table class="table table-striped mt-3">
+        <thead>
         <tr>
-            <td>${member.firstName}</td>
-            <td>${member.lastName}</td>
-            <td><a href="${pageContext.request.contextPath}/person/${member.id}">View profile</a></td>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Profile</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
-</body>
-</html>
+        </thead>
+        <tbody>
+        <c:forEach var="member" items="${group.members}">
+            <tr>
+                <td>${member.firstName}</td>
+                <td>${member.lastName}</td>
+                <td><a href="${pageContext.request.contextPath}/person/${member.id}" class="btn btn-primary">View profile</a></td>
+                <td><a href="${pageContext.request.contextPath}/person/edit/${member.id}" class="btn btn-success">Edit</a></td>
+                <td><a href="${pageContext.request.contextPath}/person/remove/${member.id}" class="btn btn-danger">Remove</a></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
