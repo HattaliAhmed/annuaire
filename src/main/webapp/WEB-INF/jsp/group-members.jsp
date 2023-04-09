@@ -10,7 +10,7 @@
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Profile</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -18,9 +18,11 @@
             <tr>
                 <td>${member.firstName}</td>
                 <td>${member.lastName}</td>
-                <td><a href="${pageContext.request.contextPath}/person/${member.id}" class="btn btn-primary">View profile</a></td>
-                <td><a href="${pageContext.request.contextPath}/person/edit/${member.id}" class="btn btn-success">Edit</a></td>
-                <td><a href="${pageContext.request.contextPath}/person/remove/${member.id}" class="btn btn-danger">Remove</a></td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/person/${member.id}" class="btn btn-primary">View profile</a>
+                    <a href="${pageContext.request.contextPath}/person/edit/${member.id}" class="btn btn-success">Edit</a>
+                    <a href="${pageContext.request.contextPath}/person/remove/${member.id}" class="btn btn-danger">Remove</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
