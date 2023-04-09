@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class Populate {
 
   @Autowired
-  private DirectoryDao directoryDao;
+  IDirectoryDao directoryDao;
 
   private static final int NB_GROUPES = 10;
   private static final int NB_PERSONNES_GROUPE = 10;
@@ -58,8 +58,8 @@ public class Populate {
     String prenom = noms.get((int) (Math.random() * noms.size()));
 
     LocalDate birthDate = LocalDate.ofEpochDay((long) (Math.random() * 365 * 100));
-    String email = prenom.toLowerCase() + "-" + nom.toLowerCase() + "@example.com";
-    String website = "http://" + prenom.toLowerCase() + nom.toLowerCase() + ".com";
+    String email = prenom.toLowerCase() + "-" + nom.toLowerCase() + "@etu.univ-amu.fr";
+    String website = "https://" + prenom.toLowerCase() + nom.toLowerCase() + ".fr";
     String password = "password";
 
     Person personne = new Person();

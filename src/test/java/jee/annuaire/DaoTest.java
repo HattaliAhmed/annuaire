@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Collection;
-import jee.annuaire.dao.DirectoryDao;
+import jee.annuaire.dao.IDirectoryDao;
 import jee.annuaire.model.Groupe;
 import jee.annuaire.model.Person;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 class DaoTest {
 
 	@Autowired
-	DirectoryDao directoryDao;
+	IDirectoryDao directoryDao;
 
 	@Test
 	@Transactional
