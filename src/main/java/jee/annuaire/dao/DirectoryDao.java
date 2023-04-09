@@ -26,16 +26,16 @@ public class DirectoryDao implements IDirectoryDao {
 			return entityManager.find(Groupe.class, id);
 		}
 
+		// same as above but returns a list
 		@Override
-		public Groupe findGroupByName(String name) {
-			return entityManager.createQuery("SELECT g FROM Groupe g WHERE g.name = :name", Groupe.class)
-					.setParameter("name", name).getSingleResult();
+		public List<Groupe> findGroupByName(String name) {
+			return entityManager.createQuery("SELECT g FROM Groupe g WHERE g.name LIKE :name", Groupe.class)
+					.setParameter("name", name).getResultList();
 		}
 
 		@Override
 		public void saveGroup(Groupe groupe) {
 			System.out.println("saveGroup: " + groupe.getName());
-			groupe.getMembers().size();
 			entityManager.merge(groupe);
 		}
 
@@ -50,9 +50,18 @@ public class DirectoryDao implements IDirectoryDao {
 		}
 
 		@Override
-		public List<Person> findPersonByName(String nom) {
-			TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p WHERE p.lastName LIKE :nom OR p.firstName LIKE :nom", Person.class);
-			query.setParameter("nom", "%" + nom + "%");
+		public List<Person> findPersonByName(String name) {
+			String[] parts = name.split("\\s+");
+			String firstName = parts.length > 1 ? parts[0] : name;
+			String lastName = parts.length > 1 ? parts[parts.length - 1] : name;
+
+			TypedQuery<Person> query = entityManager.createQuery(
+					"SELECT p FROM Person p WHERE p.firstName LIKE :firstName OR p.lastName LIKE :lastName OR (p.firstName LIKE :lastName AND p.lastName LIKE :firstName) OR (p.firstName LIKE :firstName AND p.lastName LIKE :lastName)",
+					Person.class
+			);
+			query.setParameter("firstName", "%" + firstName + "%");
+			query.setParameter("lastName", "%" + lastName + "%");
+
 			return query.getResultList();
 		}
 

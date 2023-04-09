@@ -30,9 +30,9 @@ public interface IDirectoryDao {
      * @param name
      * @return
      */
-    Groupe findGroupByName(String name);
+    List<Groupe> findGroupByName(String name);
 
-    /**
+  /**
      * Sauvegarder un groupe dans l'annuaire. S'il existe déjà, le mettre à jour.
      * @param groupe
      */
