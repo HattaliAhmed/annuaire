@@ -19,8 +19,6 @@
                 <td>${group.name}</td>
                 <td>
                     <a href="/groups/${group.id}" class="btn btn-primary">View</a>
-                    <a href="/groups/${group.id}/edit" class="btn btn-secondary">Edit</a>
-                    <a href="/groups/${group.id}/delete" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </c:forEach>
