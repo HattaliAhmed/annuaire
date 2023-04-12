@@ -32,14 +32,29 @@
                 <a class="nav-link" href="/groups">Groups</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0 mr-3">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        <form action="${pageContext.request.contextPath}/search" method="POST"> <!-- Update the method to POST -->
+            <div class="input-group">
+                <input type="text" class="form-control" name="query" placeholder="Search ..." value="${query}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
         </form>
-        <ul class="navbar-nav">
+
+        <ul class="navbar-nav ml-auto">
+            <c:if test="${!empty user && user.userId != null && user.userId != -1}">
             <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="/person/${user.userId}">Hello, ${user.firstName}</a>
             </li>
+            <li>
+                <a class="nav-link text-danger" href="/user/logout">Logout</a>
+            </li>
+            </c:if>
+            <c:if test="${empty user || user.userId == -1 || user.userId == null}">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/login">Login</a>
+                </li>
+            </c:if>
         </ul>
     </div>
 </nav>

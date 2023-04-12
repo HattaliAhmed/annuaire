@@ -33,6 +33,13 @@ public class DirectoryDao implements IDirectoryDao {
 					.setParameter("name", name).getResultList();
 		}
 
+		public Collection<Person> findPersonInGroupByName(long groupId, String query) {
+			return entityManager.createQuery("SELECT p FROM Person p WHERE p.groupe.id = :groupId AND (p.firstName LIKE :query OR p.lastName LIKE :query)", Person.class)
+					.setParameter("groupId", groupId)
+					.setParameter("query", "%" + query + "%")
+					.getResultList();
+		}
+
 		@Override
 		public void saveGroup(Groupe groupe) {
 			System.out.println("saveGroup: " + groupe.getName());

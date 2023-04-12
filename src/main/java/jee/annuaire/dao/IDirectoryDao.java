@@ -32,6 +32,8 @@ public interface IDirectoryDao {
      */
     List<Groupe> findGroupByName(String name);
 
+    Collection<Person> findPersonInGroupByName(long groupId, String query);
+
   /**
      * Sauvegarder un groupe dans l'annuaire. S'il existe déjà, le mettre à jour.
      * @param groupe

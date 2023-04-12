@@ -125,7 +125,7 @@ public class BusinessTest {
         Mockito.when(dao.findPersonById(person.getId())).thenReturn(person);
 
         // WHEN
-        Person result = manager.findPerson(anonymous, person.getId());
+        Person result = manager.findPersonById(anonymous, person.getId());
 
         // THEN
         assertNull(result);
@@ -139,7 +139,7 @@ public class BusinessTest {
                 .thenReturn(person);
 
         // WHEN
-        Person result = manager.findPerson(walid, person.getId());
+        Person result = manager.findPersonById(walid, person.getId());
 
         // THEN
         assertEquals(result.getBirthDate(), person.getBirthDate());
@@ -157,7 +157,7 @@ public class BusinessTest {
                 .thenReturn(person);
 
         // WHEN
-        Person result = manager.findPerson(ahmed, person.getId());
+        Person result = manager.findPersonById(ahmed, person.getId());
 
         // THEN
         assertEquals(result.getBirthDate(), person.getBirthDate());
@@ -175,7 +175,7 @@ public class BusinessTest {
                 .thenReturn(group);
 
         // WHEN
-        Groupe result = manager.findGroup(walid, group.getId());
+        Groupe result = manager.findGroupById(group.getId());
 
         // THEN
         assertEquals(result.getName(), group.getName());
@@ -204,7 +204,7 @@ public class BusinessTest {
                 .thenReturn(groups);
 
         // WHEN
-        Collection<Groupe> result = manager.findAllGroups(walid);
+        Collection<Groupe> result = manager.findAllGroups();
 
         // THEN
         assertTrue(result.size() == 2);

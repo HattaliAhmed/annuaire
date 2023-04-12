@@ -1,7 +1,7 @@
 package jee.annuaire.controller;
 
 import java.util.Collection;
-import java.util.List;
+import jee.annuaire.business.IDirectoryManager;
 import jee.annuaire.dao.IDirectoryDao;
 import jee.annuaire.model.Groupe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GroupeController{
 
   @Autowired
-  IDirectoryDao directoryDao;
+  IDirectoryManager directoryManager;
 
   @GetMapping("")
   public String showGroups(Model model) {
-    Collection<Groupe> groups = directoryDao.findAllGroups();
+    Collection<Groupe> groups = directoryManager.findAllGroups();
     model.addAttribute("groups", groups);
     return "groups";
   }
 
   @GetMapping("/{groupId}")
   public String showGroupMembers(@PathVariable Long groupId, Model model) {
-    Groupe group = directoryDao.findGroupById(groupId);
+    Groupe group = directoryManager.findGroupById(groupId);
     model.addAttribute("group", group);
     return "group-members";
   }
