@@ -51,6 +51,7 @@ public class DirectoryManager implements IDirectoryManager{
                         }
                 }
                 else {
+                        p.setPassword(null);
                         p.setEmail(null);
                         p.setBirthDate(null);
                 }

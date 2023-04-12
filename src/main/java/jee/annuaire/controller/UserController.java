@@ -64,5 +64,9 @@ public class UserController {
     // Redirect to the login page
     return "redirect:/user/login"; // Update the return statement to redirect to "/user/login"
   }
+  @RequestMapping("/forgotPassword")
+  public String showForgotPasswordForm() {
+    return "forgot-password"; // Return the view name for the forgot password form
+  }
 
 }

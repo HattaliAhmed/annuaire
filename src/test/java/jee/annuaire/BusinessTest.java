@@ -59,17 +59,17 @@ public class BusinessTest {
         walid = new User();
         ahmed = new User();
 
-        anonymous.setId(-1L);
-        anonymous.setName("Anonymous");
-        anonymous.setFirstname("Anonymous");
+        anonymous.setUserId(-1L);
+        anonymous.setFirstName("Anonymous");
+        anonymous.setLastName("Anonymous");
 
-        walid.setId((long)100);
-        walid.setName("MEKIBES");
-        walid.setFirstname("Walid");
+        walid.setUserId((long)100);
+        walid.setLastName("MEKIBES");
+        walid.setFirstName("Walid");
 
-        ahmed.setId(200L);
-        ahmed.setName("HATTALI");
-        ahmed.setFirstname("Ahmed");
+        ahmed.setUserId(200L);
+        ahmed.setLastName("HATTALI");
+        ahmed.setFirstName("Ahmed");
 
         group = new Groupe();
         group.setId(1L);
@@ -113,22 +113,20 @@ public class BusinessTest {
 
     }
 
-    @After
-    public void tearDown() {
-        // pour plus tard
-    }
-
     @Test
     public void testGetPersonAsAnonymous() {
-
         // GIVEN
         Mockito.when(dao.findPersonById(person.getId())).thenReturn(person);
 
+        User anonymous = new User();
         // WHEN
         Person result = manager.findPersonById(anonymous, person.getId());
 
         // THEN
-        assertNull(result);
+        assertNotNull(result);
+        assertNull(result.getPassword());
+        assertNull(result.getBirthDate());
+        assertNull(result.getEmail());
     }
 
     @Test
@@ -162,7 +160,7 @@ public class BusinessTest {
         // THEN
         assertEquals(result.getBirthDate(), person.getBirthDate());
         assertEquals(result.getEmail(), person.getEmail());
-        assertNotEquals(result.getPassword(), null);
+        assertNull(result.getPassword());
         assertEquals(result.getId(), person.getId());
 
     }
@@ -216,7 +214,6 @@ public class BusinessTest {
 
     @Test
     public void testLoginSuccess() {
-
         // GIVEN
         Mockito.when(dao.findPersonById(person.getId()))
                 .thenReturn(person);
@@ -225,9 +222,9 @@ public class BusinessTest {
         boolean connected = manager.login(anonymous, person.getId(), person.getPassword());
 
         // THEN
-        assertEquals(anonymous.getId(), person.getId());
-        assertEquals(anonymous.getName(), person.getLastName());
-        assertEquals(anonymous.getFirstname(), person.getFirstName());
+        assertEquals(anonymous.getUserId(), person.getId());
+        assertEquals(anonymous.getLastName(), person.getLastName());
+        assertEquals(anonymous.getFirstName(), person.getFirstName());
         assertTrue(connected);
     }
 
@@ -242,9 +239,9 @@ public class BusinessTest {
         boolean connected = manager.login(anonymous, person.getId(), "");
 
         // THEN
-        assertEquals((long)anonymous.getId(), (long)-1L);
-        assertEquals(anonymous.getName(), null);
-        assertEquals(anonymous.getFirstname(), null);
+        assertEquals((long)anonymous.getUserId(), (long)-1L);
+        assertEquals(anonymous.getLastName(), "Anonymous");
+        assertEquals(anonymous.getFirstName(), "Anonymous");
         assertFalse(connected);
 
     }
@@ -256,9 +253,9 @@ public class BusinessTest {
         manager.logout(walid);
 
         // THEN
-        assertEquals(walid.getId(), anonymous.getId());
-        assertEquals(walid.getName(), anonymous.getName());
-        assertEquals(walid.getFirstname(), anonymous.getFirstname());
+        assertEquals(walid.getUserId(), anonymous.getUserId());
+        assertEquals(walid.getLastName(), anonymous.getLastName());
+        assertEquals(walid.getFirstName(), anonymous.getFirstName());
 
     }
 
@@ -269,7 +266,7 @@ public class BusinessTest {
         manager.savePerson(ahmed, person2);
 
         // THEN
-        assertEquals(ahmed.getId(), person2.getId());
+        assertEquals(ahmed.getUserId(), person2.getId());
 
     }
 

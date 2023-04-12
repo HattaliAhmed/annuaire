@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/groups")
+@RequestMapping("/")
 public class GroupeController{
 
   @Autowired
@@ -25,7 +25,7 @@ public class GroupeController{
     return "groups";
   }
 
-  @GetMapping("/{groupId}")
+  @GetMapping("/groups/{groupId}")
   public String showGroupMembers(@PathVariable Long groupId, Model model) {
     Groupe group = directoryManager.findGroupById(groupId);
     model.addAttribute("group", group);

@@ -22,16 +22,11 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Annuaire</a>
+    <a class="navbar-brand" href="/">Annuaire</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/groups">Groups</a>
-            </li>
-        </ul>
         <form action="${pageContext.request.contextPath}/search" method="POST"> <!-- Update the method to POST -->
             <div class="input-group">
                 <input type="text" class="form-control" name="query" placeholder="Search ..." value="${query}">

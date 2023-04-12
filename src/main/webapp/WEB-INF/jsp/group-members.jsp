@@ -35,7 +35,6 @@
                 <td>${member.lastName}</td>
                 <td>
                     <a href="${pageContext.request.contextPath}/person/${member.id}" class="btn btn-primary">View profile</a>
-                    <a href="${pageContext.request.contextPath}/person/edit/${member.id}" class="btn btn-secondary">Edit</a>
                 </td>
             </tr>
         </c:forEach>
