@@ -2,7 +2,6 @@ package jee.annuaire.controller;
 
 import java.util.Collection;
 import jee.annuaire.business.IDirectoryManager;
-import jee.annuaire.dao.IDirectoryDao;
 import jee.annuaire.model.Groupe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

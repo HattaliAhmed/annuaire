@@ -46,7 +46,7 @@ public class UserController {
     if (directoryManager.login(user, id, password)) {
       logger.info("login successful for " + user);
       // If the login is successful, redirect to a success page or perform any other necessary actions
-      return "redirect:/groups"; // Update the return statement to redirect to "/groups"
+      return "redirect:/"; // Update the return statement to redirect to "/groups"
     } else {
       logger.info("login failed for " + user);
       // If the login fails, add an error message to the model and return to the login page

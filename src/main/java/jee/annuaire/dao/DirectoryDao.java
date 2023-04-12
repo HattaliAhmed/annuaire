@@ -26,7 +26,6 @@ public class DirectoryDao implements IDirectoryDao {
 			return entityManager.find(Groupe.class, id);
 		}
 
-		// same as above but returns a list
 		@Override
 		public List<Groupe> findGroupByName(String name) {
 			return entityManager.createQuery("SELECT g FROM Groupe g WHERE g.name LIKE :name", Groupe.class)
@@ -71,7 +70,6 @@ public class DirectoryDao implements IDirectoryDao {
 
 			return query.getResultList();
 		}
-
 
 		@Override
 		public void savePerson(Person person) {
