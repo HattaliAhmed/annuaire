@@ -41,7 +41,16 @@ public class UserController {
 
   // Handler method for processing the login form submission
   @PostMapping("/login")
-  public String processLogin(@ModelAttribute("user") User user, @RequestParam("id") long id, @RequestParam("password") String password, Model model) {
+  public String processLogin(@ModelAttribute("user") User user, @RequestParam("id") String idString, @RequestParam("password") String password, Model model) {
+    // Validate if id is a number
+    long id;
+    try {
+      id = Long.parseLong(idString);
+    } catch (NumberFormatException e) {
+      model.addAttribute("error", "User ID must be a number");
+      return "login";
+    }
+
     // Call the directoryManager's login method to check if the provided credentials are valid
     if (directoryManager.login(user, id, password)) {
       logger.info("login successful for " + user);
@@ -54,6 +63,7 @@ public class UserController {
       return "login"; // Return the view name for the login page
     }
   }
+
 
   // Handle logout requests
   @GetMapping("/logout")

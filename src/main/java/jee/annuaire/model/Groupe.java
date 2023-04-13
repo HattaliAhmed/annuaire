@@ -1,7 +1,6 @@
 package jee.annuaire.model;
 
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +15,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * Represents a group in the system.
+ */
 @Entity
 @Data
 @Builder
@@ -34,9 +36,14 @@ public class Groupe {
         fetch = FetchType.LAZY,
         mappedBy = "groupe",
         cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE })
-    @ToString.Exclude  // pour éviter les boucles
+    @ToString.Exclude  // to avoid circular references
     private Collection<Person> members;
 
+    /**
+     * Adds a person as a member of the group.
+     *
+     * @param person The person to add
+     */
     public void addMember(Person person) {
         members.add(person);
         person.setGroupe(this);

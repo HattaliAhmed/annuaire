@@ -1,5 +1,6 @@
 package jee.annuaire.business;
 
+import java.util.ArrayList;
 import jee.annuaire.dao.IDirectoryDao;
 import jee.annuaire.model.Person;
 import jee.annuaire.model.Groupe;
@@ -69,21 +70,38 @@ public class DirectoryManager implements IDirectoryManager{
                 return directoryDao.findAllGroups();
         }
 
-        @Override
         public Collection<Person> findPersonByName(User user, String name) {
-                // remove sensitive information from every returned person
+                // Retrieve the list of persons from the database
                 Collection<Person> persons = directoryDao.findPersonByName(name);
-                for (Person p : persons) {
-                        p.setPassword(null);
 
-                        // if the user is not logged in, remove email and birthdate
-                        if (!checkUserIsLoggedIn(user)) {
+                // Create a new list to store the modified public persons
+                Collection<Person> publicPersons = new ArrayList<Person>();
+
+                // Loop through each person in the original list
+                for (Person p : persons) {
+                        // Create a new PublicPerson object with only the non-sensitive information
+                        Person publicPerson = new Person();
+                        publicPerson.setId(p.getId());
+                        publicPerson.setFirstName(p.getFirstName());
+                        publicPerson.setLastName(p.getLastName());
+                        publicPerson.setWebsite(p.getWebsite());
+                        publicPerson.setGroupe(p.getGroupe());
+                        // Add the modified PublicPerson object to the new list
+                        publicPersons.add(publicPerson);
+                }
+
+                // If the user is not logged in, remove email and birthdate from the modified public persons
+                if (!checkUserIsLoggedIn(user)) {
+                        for (Person p : publicPersons) {
                                 p.setEmail(null);
                                 p.setBirthDate(null);
+                                p.setPassword(null);
                         }
                 }
-                return persons;
+
+                return publicPersons;
         }
+
 
         @Override
         public Collection<Groupe> findGroupByName(String query) {
@@ -93,16 +111,26 @@ public class DirectoryManager implements IDirectoryManager{
         public Collection<Person> findPersonByGroup(User user, long groupId, String query) {
                 Collection<Person> persons = directoryDao.findPersonInGroupByName(groupId, query);
                 logger.info("findPersonByGroup: " + persons.size());
+                Collection<Person> publicPersons = new ArrayList<>();
                 for (Person p : persons) {
-                        p.setPassword(null);
-                        // if the user is not logged in, remove email and birthdate
+                        // Create a new PublicPerson object with only the non-sensitive information
+                        Person publicPerson = new Person();
+                        publicPerson.setId(p.getId());
+                        publicPerson.setFirstName(p.getFirstName());
+                        publicPerson.setLastName(p.getLastName());
+                        publicPerson.setWebsite(p.getWebsite());
+                        publicPerson.setGroupe(p.getGroupe());
+                        // If the user is not logged in, remove email and birthdate from the PublicPerson object
                         if (!checkUserIsLoggedIn(user)) {
-                                p.setEmail(null);
-                                p.setBirthDate(null);
+                                publicPerson.setEmail(null);
+                                publicPerson.setBirthDate(null);
                         }
+                        // Add the PublicPerson object to the collection
+                        publicPersons.add(publicPerson);
                 }
-                return persons;
+                return publicPersons;
         }
+
 
         @Override
         public boolean login(User user, long personId, String password) {
@@ -127,12 +155,10 @@ public class DirectoryManager implements IDirectoryManager{
         @Override
         public Person savePerson(User user, Person p) {
                 // If the user is not logged in or user's id doesn't match person's id, return null.
-                if (checkUserIsLoggedIn(user) || user.getUserId() != p.getId()) {
+                if (!checkUserIsLoggedIn(user) || user.getUserId() != p.getId()) {
                         return null;
                 }
-
                 directoryDao.savePerson(p);
-                p.setPassword(null);
                 return p;
         }
 

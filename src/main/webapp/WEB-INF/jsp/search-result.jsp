@@ -13,6 +13,7 @@
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>Group</th> <!-- Add Group column -->
       <th>Actions</th>
     </tr>
     </thead>
@@ -21,6 +22,7 @@
       <tr>
         <td>${person.firstName}</td>
         <td>${person.lastName}</td>
+        <td>${person.groupe.name}</td> <!-- Display Group value -->
         <td>
           <a href="${pageContext.request.contextPath}/person/${person.id}" class="btn btn-primary">View profile</a>
         </td>

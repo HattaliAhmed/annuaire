@@ -1,15 +1,14 @@
 package jee.annuaire.model;
 
 import java.time.LocalDate;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,10 +29,13 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "First name is required")
     private String firstName;
 
+    @NotEmpty(message = "Last name is required")
     private String lastName;
 
+    @Email(message = "Email should be valid")
     @Column(unique = true)
     private String email;
 
@@ -44,7 +46,7 @@ public class Person {
 
     private String password;
 
-    @ManyToOne(optional = true)
-    @ToString.Exclude // afin d'éviter les boucles
+    @ManyToOne()
+    @ToString.Exclude // to avoid circular references
     private Groupe groupe;
 }

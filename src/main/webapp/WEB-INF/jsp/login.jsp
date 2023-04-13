@@ -21,6 +21,10 @@
             <input type="password" id="password" name="password" class="form-control" required />
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+        <c:if test="${not empty error}">
+            <p class="text-danger mt-3">${error}</p>
+        </c:if>
     </form>
 
 </div>
