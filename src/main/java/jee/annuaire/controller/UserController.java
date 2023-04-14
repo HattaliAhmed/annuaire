@@ -5,7 +5,7 @@ import java.util.UUID;
 import jee.annuaire.business.IDirectoryManager;
 import jee.annuaire.model.PasswordResetToken;
 import jee.annuaire.model.Person;
-import jee.annuaire.web.User;
+import jee.annuaire.model.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;

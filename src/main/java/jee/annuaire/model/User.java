@@ -1,4 +1,4 @@
-package jee.annuaire.web;
+package jee.annuaire.model;
 import java.io.Serializable;
 
 import lombok.Data;

@@ -2,7 +2,7 @@ package jee.annuaire.controller;
 
 import jee.annuaire.business.IDirectoryManager;
 import jee.annuaire.model.Groupe;
-import jee.annuaire.web.User;
+import jee.annuaire.model.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

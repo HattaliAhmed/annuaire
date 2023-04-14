@@ -14,9 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import jee.annuaire.dao.IDirectoryDao;
 import jee.annuaire.model.Groupe;
 import jee.annuaire.model.Person;
-import jee.annuaire.web.User;
+import jee.annuaire.model.User;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;

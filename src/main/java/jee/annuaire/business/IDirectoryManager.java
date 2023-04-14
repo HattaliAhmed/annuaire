@@ -3,7 +3,7 @@ package jee.annuaire.business;
 import jee.annuaire.model.Groupe;
 import jee.annuaire.model.PasswordResetToken;
 import jee.annuaire.model.Person;
-import jee.annuaire.web.User;
+import jee.annuaire.model.User;
 
 import java.util.Collection;
 

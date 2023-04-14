@@ -21,8 +21,8 @@ public class Populate {
   @Autowired
   IDirectoryDao directoryDao;
 
-  private static final int NB_GROUPES = 10;
-  private static final int NB_PERSONNES_GROUPE = 10;
+  private static final int NB_GROUPES = 500;
+  private static final int NB_PERSONNES_GROUPE = 50;
 
   private List<String> noms;
 
