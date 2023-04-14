@@ -6,6 +6,10 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <c:if test="${not empty success}">
+                <div class="alert alert-success mt-3">${success}</div>
+            </c:if>
+
             <h1 class="text-center mb-3">List of Groups</h1>
             <table class="table table-striped">
                 <thead>

@@ -3,6 +3,7 @@ package jee.annuaire.dao;
 import java.util.Collection;
 import java.util.List;
 import jee.annuaire.model.Groupe;
+import jee.annuaire.model.PasswordResetToken;
 import jee.annuaire.model.Person;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +63,9 @@ public interface IDirectoryDao {
       */
     List<Person> findPersonByName(String nom);
 
-   /**
+  Long findPersonByEmail(String email);
+
+  /**
     * Sauvegarder une personne dans l'annuaire. Si elle existe déjà, la mettre à jour.
     * @param person
     */
@@ -74,4 +77,11 @@ public interface IDirectoryDao {
       */
    void deletePerson(Person person);
 
+  PasswordResetToken findToken(String token);
+
+  boolean verifyToken(String token);
+
+  PasswordResetToken saveToken(PasswordResetToken token);
+
+  void deleteToken(PasswordResetToken token);
 }

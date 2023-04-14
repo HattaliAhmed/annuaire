@@ -2,6 +2,7 @@ package jee.annuaire.business;
 
 import java.util.ArrayList;
 import jee.annuaire.dao.IDirectoryDao;
+import jee.annuaire.model.PasswordResetToken;
 import jee.annuaire.model.Person;
 import jee.annuaire.model.Groupe;
 import jee.annuaire.web.User;
@@ -131,6 +132,11 @@ public class DirectoryManager implements IDirectoryManager{
                 return publicPersons;
         }
 
+        @Override
+        public Long findPersonByEMail(String email) {
+                return directoryDao.findPersonByEmail(email);
+        }
+
 
         @Override
         public boolean login(User user, long personId, String password) {
@@ -172,4 +178,18 @@ public class DirectoryManager implements IDirectoryManager{
                 return g;
         }
 
+        @Override
+        public PasswordResetToken saveToken(PasswordResetToken token) {
+                return directoryDao.saveToken(token);
+        }
+
+        @Override
+        public boolean verifyToken(String token) {
+                return directoryDao.verifyToken(token);
+        }
+
+        @Override
+        public PasswordResetToken findToken(String token) {
+                return directoryDao.findToken(token);
+        }
 }

@@ -35,7 +35,6 @@ public class SearchController {
     return "search-result";
   }
 
-
   @PostMapping("/{group_id}") // Update the URL pattern
   public String FindPersonInGroup(@ModelAttribute("user") User user,
                                   @PathVariable("group_id") Long group_id, // Update to use @RequestParam
@@ -45,7 +44,4 @@ public class SearchController {
     model.addAttribute("persons", persons);
     return "search-result";
   }
-
-
-
 }

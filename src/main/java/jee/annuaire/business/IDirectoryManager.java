@@ -1,6 +1,7 @@
 package jee.annuaire.business;
 
 import jee.annuaire.model.Groupe;
+import jee.annuaire.model.PasswordResetToken;
 import jee.annuaire.model.Person;
 import jee.annuaire.web.User;
 
@@ -46,7 +47,10 @@ public interface IDirectoryManager {
     Collection<Groupe> findGroupByName(String query);
 
 Collection<Person> findPersonByGroup(User user, long groupId, String query);
-    /**
+
+  Long findPersonByEMail(String email);
+
+  /**
      * Authenticates a user by their ID and password.
      *
      * @param user The User object representing the current user.
@@ -81,4 +85,9 @@ Collection<Person> findPersonByGroup(User user, long groupId, String query);
      */
     Groupe saveGroup(User user, Groupe g);
 
+  PasswordResetToken saveToken(PasswordResetToken token);
+
+  boolean verifyToken(String token);
+
+  PasswordResetToken findToken(String token);
 }
