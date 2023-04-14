@@ -70,7 +70,7 @@ public class PersonController {
       // log all errors
       result.getAllErrors().forEach(error -> logger.error(error));
       return "edit-person";
-    }else if (!p.getPassword().equals(person.getPassword())) {
+    }else if (person.getPassword().isEmpty() || !p.getPassword().equals(person.getPassword())) {
       // If validation errors occur, return to the edit form with error messages
       model.addAttribute("groups", directoryManager.findAllGroups()); // Add groups to the model
       // add error to result
@@ -97,6 +97,7 @@ public class PersonController {
     p.setLastName(person.getLastName());
     p.setEmail(person.getEmail());
     p.setBirthDate(person.getBirthDate());
+    p.setWebsite(person.getWebsite());
     p.setGroupe(g);
 
     // Update the group's list of persons with the edited person
