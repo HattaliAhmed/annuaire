@@ -36,7 +36,7 @@ public class DirectoryDao implements IDirectoryDao {
 		}
 
 		public Collection<Person> findPersonInGroupByName(long groupId, String query) {
-			return entityManager.createQuery("SELECT p FROM Person p WHERE p.groupe.id = :groupId AND (p.firstName LIKE :query OR p.lastName LIKE :query)", Person.class)
+			return entityManager.createQuery("SELECT p FROM Person p WHERE p.groupe.id = :groupId AND (p.firstName LIKE :query OR p.lastName LIKE :query)  ORDER BY p.firstName, p.lastName ASC", Person.class)
 					.setParameter("groupId", groupId)
 					.setParameter("query", "%" + query + "%")
 					.getResultList();
@@ -64,7 +64,7 @@ public class DirectoryDao implements IDirectoryDao {
 			String lastName = parts.length > 1 ? parts[parts.length - 1] : name;
 
 			TypedQuery<Person> query = entityManager.createQuery(
-					"SELECT p FROM Person p WHERE p.firstName LIKE :firstName OR p.lastName LIKE :lastName OR (p.firstName LIKE :lastName AND p.lastName LIKE :firstName) OR (p.firstName LIKE :firstName AND p.lastName LIKE :lastName)",
+					"SELECT p FROM Person p WHERE p.firstName LIKE :firstName OR p.lastName LIKE :lastName OR (p.firstName LIKE :lastName AND p.lastName LIKE :firstName) OR (p.firstName LIKE :firstName AND p.lastName LIKE :lastName) ORDER BY p.firstName, p.lastName ASC",
 					Person.class
 			);
 			query.setParameter("firstName", "%" + firstName + "%");

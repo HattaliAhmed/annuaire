@@ -1,5 +1,6 @@
 package jee.annuaire.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class PasswordResetToken {
 
   private Long personId;
 
+  @Column(unique = true)
   private String token;
 
   private LocalDateTime expiryDate;

@@ -31,6 +31,7 @@ public class SearchController {
     Collection<Person> persons = directoryManager.findPersonByName(user, query);
     model.addAttribute("persons", persons);
     Collection<Groupe> groups = directoryManager.findGroupByName(query);
+    model.addAttribute("groups", groups);
     model.addAttribute("query", query);
     return "search-result";
   }

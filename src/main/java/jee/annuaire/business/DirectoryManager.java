@@ -32,10 +32,7 @@ public class DirectoryManager implements IDirectoryManager{
          * @return true si l'utilisateur est connecté, false sinon.
          */
         private boolean checkUserIsLoggedIn(User user) {
-                if(user == null || user.getUserId() == null || user.getUserId() == -1L){
-                        return false;
-                }
-                return true;
+                return user != null && user.getUserId() != null && user.getUserId() != -1L;
         }
         protected final Log logger = LogFactory.getLog(getClass());
 
@@ -48,7 +45,7 @@ public class DirectoryManager implements IDirectoryManager{
                 }
 
                 if(checkUserIsLoggedIn(user)){
-                        if(user.getUserId() != p.getId()){
+                        if(!user.getUserId().equals(p.getId())){
                                 p.setPassword(null);
                         }
                 }

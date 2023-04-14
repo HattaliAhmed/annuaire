@@ -1,12 +1,16 @@
 package jee.annuaire;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import jee.annuaire.dao.IDirectoryDao;
 import jee.annuaire.model.Groupe;
+import jee.annuaire.model.PasswordResetToken;
 import jee.annuaire.model.Person;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -132,6 +136,24 @@ class DaoTest {
 		assertNotNull(p);
 		directoryDao.deletePerson(p);
 		assertNull(directoryDao.findPersonById(1));
+	}
+
+	@Test
+	@Transactional
+	void testCheckToken() {
+		PasswordResetToken t = new PasswordResetToken();
+		t.setExpiryDate(LocalDateTime.now().minusMinutes(1));
+		t.setToken("token");
+		directoryDao.saveToken(t);
+
+		assertFalse(directoryDao.verifyToken("token"));
+
+		PasswordResetToken t2 = new PasswordResetToken();
+
+		t2.setExpiryDate(LocalDateTime.now().plusMinutes(1));
+		t2.setToken("token2");
+		directoryDao.saveToken(t2);
+		assertTrue(directoryDao.verifyToken("token2"));
 	}
 
 }

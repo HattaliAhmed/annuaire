@@ -73,7 +73,7 @@ public class Populate {
   }
 
   private List<String> readNamesFromFile(String fileName) throws FileNotFoundException {
-    List<String> noms = new ArrayList<String>();
+    List<String> noms = new ArrayList<>();
     Scanner scanner = new Scanner(new File(fileName));
 
     while (scanner.hasNextLine()) {
